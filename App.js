@@ -1,76 +1,82 @@
-// // App.js
-import AppNavigation from './navigation/appNavigation';
-// import React, { useState, useEffect } from 'react';
-// import { NavigationContainer } from '@react-navigation/native';
-// import { createStackNavigator } from '@react-navigation/stack';
-// import AsyncStorage from '@react-native-async-storage/async-storage';
-// import AuthScreen from './screens/AuthScreen';
-// import HomeScreen from './screens/HomeScreen';
-// import ProfileScreen from './screens/ProfileScreen';
-// import ScheduleScreen from './screens/ScheduleScreen';
+// App.js
+import React, { useState, useEffect } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import AuthScreen from './screens/AuthScreen';
+import HomeScreen from './screens/HomeScreen';
+import ProfileScreen from './screens/ProfileScreen';
+import ScheduleScreen from './screens/ScheduleScreen';
+import OnboardingScreen from './screens/OnboardingScreen';
 
-// const Stack = createStackNavigator();
+const Stack = createStackNavigator();
 
-// const App = () => {
-//   const [user, setUser] = useState(null);
+// ... (previous imports)
 
-//   useEffect(() => {
-//     // Check if the user is authenticated (using AsyncStorage or other authentication mechanisms)
-//     checkAuthentication();
-//   }, []);
+const App = () => {
+  const [user, setUser] = useState(null);
+  const [isOnboardingComplete, setIsOnboardingComplete] = useState(false);
 
-//   const checkAuthentication = async () => {
-//     try {
-//       const userToken = await AsyncStorage.getItem('userToken');
-//       if (userToken) {
-//         // Set the user if the token is present
-//         setUser({ token: userToken });
-//       }
-//     } catch (error) {
-//       console.error('Error checking authentication:', error);
-//     }
-//   };
+  useEffect(() => {
+    checkOnboardingStatus();
+    checkAuthentication();
+  }, []);
 
-//   const onLogin = (userToken) => {
-//     setUser({ token: userToken });
-//     // Save the user token to AsyncStorage or your authentication mechanism
-//     AsyncStorage.setItem('userToken', userToken);
-//   };
+  const checkOnboardingStatus = async () => {
+    try {
+      const onboardingStatus = await AsyncStorage.getItem('onboardingStatus');
+      setIsOnboardingComplete(Boolean(onboardingStatus));
+    } catch (error) {
+      console.error('Error checking onboarding status:', error);
+    }
+  };
 
-//   const onLogout = async () => {
-//     // Clear user data from state and AsyncStorage
-//     setUser(null);
-//     await AsyncStorage.removeItem('userToken');
-//   };
+  const checkAuthentication = async () => {
+    try {
+      const userToken = await AsyncStorage.getItem('userToken');
+      if (userToken) {
+        setUser({ token: userToken });
+      }
+    } catch (error) {
+      console.error('Error checking authentication:', error);
+    }
+  };
 
-//   return (
-//     <NavigationContainer>
-//       <Stack.Navigator
-//         initialRouteName={user ? 'Home' : 'Auth'}
-//         screenOptions={{ headerShown: false }}
-//       >
-//         {user ? (
-//           <>
-//             <Stack.Screen name="Home" options={{ title: 'Home' }}>
-//               {(props) => <HomeScreen {...props} onLogout={onLogout} />}
-//             </Stack.Screen>
-//             <Stack.Screen name="Profile" component={ProfileScreen} />
-//             <Stack.Screen name="Schedule" component={ScheduleScreen} />
-//           </>
-//         ) : (
-//           <Stack.Screen name="Auth">
-//             {(props) => <AuthScreen {...props} onLogin={onLogin} />}
-//           </Stack.Screen>
-//         )}
-//       </Stack.Navigator>
-//     </NavigationContainer>
-//   );
-// };
+  const onOnboardingComplete = async () => {
+    await AsyncStorage.setItem('onboardingStatus', 'complete');
+    setIsOnboardingComplete(true);
+  };
 
-// export default App;
+  const onLogin = (userToken) => {
+    setUser({ token: userToken });
+    AsyncStorage.setItem('userToken', userToken);
+  };
 
-export default function App() {
+  const onLogout = async () => {
+    setUser(null);
+    await AsyncStorage.removeItem('userToken');
+  };
+
   return (
-    <AppNavigation />
+    <NavigationContainer>
+      <Stack.Navigator
+        screenOptions={{ headerShown: false }}
+        initialRouteName={isOnboardingComplete ? (user ? 'Home' : 'Auth') : 'Onboarding'}
+      >
+        <Stack.Screen name="Onboarding">
+          {(props) => <OnboardingScreen {...props} onOnboardingComplete={onOnboardingComplete} />}
+        </Stack.Screen>
+        <Stack.Screen name="Home">
+          {(props) => <HomeScreen {...props} onLogout={onLogout} />}
+        </Stack.Screen>
+        <Stack.Screen name="Profile" component={ProfileScreen} />
+        <Stack.Screen name="Schedule" component={ScheduleScreen} />
+        <Stack.Screen name="Auth">
+          {(props) => <AuthScreen {...props} onLogin={onLogin} />}
+        </Stack.Screen>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
+
+export default App;
