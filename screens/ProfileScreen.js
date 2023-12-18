@@ -1,6 +1,6 @@
 // screens/ProfileScreen.js
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { Button, Avatar, Card, Title, Paragraph } from 'react-native-paper';
 
 const ProfileScreen = ({ navigation }) => {
@@ -8,12 +8,16 @@ const ProfileScreen = ({ navigation }) => {
   const user = {
     name: 'Clarisse Ng',
     email: 'clarisse.ng@example.com',
-    profilePicture: Avatar.Image, // Replace with the actual path
+    profilePicture: 'https://example.com/default-profile-picture.jpg', // Replace with the actual path
   };
 
+  //TODO: Add onPress handlers to the buttons below
   return (
     <View style={styles.container}>
-      <Avatar.Image size={120} source={user.profilePicture} style={styles.profilePicture} />
+      <Avatar.Image size={120} source={{ uri: user.profilePicture }} style={styles.profilePicture} />
+      <Button icon="camera" mode="elevated" style={styles.uploadButton} onPress={() => navigation.Button}>
+        Upload Profile Picture
+      </Button>
       <Card style={{ width: '100%', marginTop: 20 }}>
         <Card.Content>
           <Title style={{ fontSize: 24, marginBottom: 10 }}>{user.name}</Title>
@@ -37,6 +41,9 @@ const styles = StyleSheet.create({
   },
   profilePicture: {
     marginBottom: 20,
+  },
+  uploadButton: {
+    marginVertical: 10,
   },
   goBackButton: {
     marginTop: 20,
