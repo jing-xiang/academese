@@ -2,6 +2,7 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Button, Avatar, Card, Title, Paragraph } from 'react-native-paper';
+import Lottie from 'lottie-react-native';
 
 const ProfileScreen = ({ navigation }) => {
   // Placeholder user data

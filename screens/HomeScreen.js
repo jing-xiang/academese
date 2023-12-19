@@ -23,10 +23,12 @@ export default class Home extends React.Component{
                            marginTop:30,
                            backgroundColor:"#d1a0a7"
                        }}>
+                        <TouchableOpacity onPress={()=>{this.props.navigation.navigate("Profile")}}>
                            <Image
                             source={require('../images/hum.png')}
                             style={{height:15,width:20}}
                            />
+                           </TouchableOpacity>
                        </View>
                    </View>
                    <Text style={{
@@ -36,7 +38,7 @@ export default class Home extends React.Component{
                        fontFamily:"Bold",
                        color:"#FFF"
                    }}>
-                       Welcome back Mikolaj
+                       Welcome back, Clarisse!
                    </Text>
 
                    <View style={{
@@ -49,7 +51,7 @@ export default class Home extends React.Component{
                        marginTop:20
                    }}>
                        <TextInput
-                            placeholder="Search for new knowledge!"
+                            placeholder="Search"
                             placeholderTextColor="#345c74"
                             style={{
                                 fontFamily:"Bold",
@@ -80,10 +82,10 @@ export default class Home extends React.Component{
                                width:250,
                                paddingRight:100 
                            }}>
-                               Start learning new Staff
+                               Review your progress
                            </Text>
                            <TouchableOpacity
-                                onPress={()=>this.props.navigation.navigate('Cources')}
+                                onPress={()=>{this.props.navigation.navigate("Schedule")}}
                                 style={{
                                     flexDirection:"row",
                                     backgroundColor:"#f58084",
@@ -99,7 +101,7 @@ export default class Home extends React.Component{
                                         color:"#FFF",
                                         fontFamily:"Bold",
                                         fontSize:12
-                                    }}>Categories</Text>  
+                                    }}>Schedule</Text>  
                                     <Image
                                         source={require('../images/a3.png')}
                                         style={{marginLeft:20,width:8,height:8}}
@@ -119,21 +121,23 @@ export default class Home extends React.Component{
                        paddingHorizontal:20,
                        marginTop:20,
                        marginBottom:10
-                   }}>Courses in progress</Text>
+                   }}>Classes in progress</Text>
 
                    <CourseList
-                        img={require('../images/xd.png')}
-                        title="Adobe XD Prototyping"
+                   onPress={()=>{this.props.navigation.navigate("Xd")}}
+                        //img={require('../images/ps.png')}
+                        title="H2 Math"
                         bg="#fdddf3"
                    />
                     <CourseList
-                        img={require('../images/sketch.png')}
-                        title="Sketch shortcuts and tricks"
+                    onPress={()=>{this.props.navigation.navigate("VideoPage")}}
+                        //img={require('../images/ps.png')}
+                        title="H2 History"
                         bg="#fef8e3"
                    />
                     <CourseList
-                        img={require('../images/ae.png')}
-                        title="UI Motion Design in After Effects"
+                        //img={require('../images/ps.png')}
+                        title="H2 Physics"
                         bg="#fcf2ff"
                    />
                </ScrollView>

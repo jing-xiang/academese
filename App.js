@@ -8,6 +8,9 @@ import HomeScreen from './screens/HomeScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import ScheduleScreen from './screens/ScheduleScreen';
 import OnboardingScreen from './screens/OnboardingScreen';
+import * as Font from 'expo-font' 
+import Xd from './screens/Xd';
+import VideoPage from './screens/VideoPage';
 
 const Stack = createStackNavigator();
 
@@ -33,6 +36,11 @@ const App = () => {
 
   const checkAuthentication = async () => {
     try {
+      await Font.loadAsync({
+        "Bold":require('./fonts/Montserrat-ExtraBold.otf'),
+        "Medium":require('./fonts/Montserrat-Medium.otf'),
+        "Regular":require('./fonts/Montserrat-Regular.otf'),
+      })
       const userToken = await AsyncStorage.getItem('userToken');
       if (userToken) {
         setUser({ token: userToken });
@@ -74,6 +82,8 @@ const App = () => {
         <Stack.Screen name="Auth">
           {(props) => <AuthScreen {...props} onLogin={onLogin} />}
         </Stack.Screen>
+        <Stack.Screen name="Xd" component={Xd}></Stack.Screen>
+        <Stack.Screen name="VideoPage" component={VideoPage}></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );

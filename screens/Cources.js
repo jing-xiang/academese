@@ -78,7 +78,7 @@ export default class Cources extends React.Component{
                     <View style={{marginTop:40}}>
                             <CourseList
                                 onPress={()=>this.props.navigation.navigate("Xd")}
-                                img={require('../images/xd.png')}
+                                img={require('../images/a2.png')}
                                 title="Adobe XD Prototyping"
                                 bg="#fdddf3"
                             />

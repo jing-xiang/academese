@@ -3,11 +3,11 @@ import {View,Text,Image,ImageBackground,TouchableOpacity,} from 'react-native'
 import { Modalize } from 'react-native-modalize'
 import Chapters from '../screens/Chapters'
 
-export default class Xd extends React.Component{
-    render(){
+const Xd = ({ navigation }) => {
+    //render(){
         return(
           <ImageBackground
-                source={require('../images/crs.png')}
+                source={require('../images/cat.png')}
                 style={{width:"100%",height:"100%"}}
           >
                 <View style={{
@@ -16,7 +16,7 @@ export default class Xd extends React.Component{
                     paddingHorizontal:20
                 }}>
                     <TouchableOpacity
-                        onPress={()=>this.props.navigation.navigate("Cources")}
+                        onPress={()=>navigation.goBack()}
                         style={{
                             paddingHorizontal:10,
                             paddingVertical:13,
@@ -45,7 +45,7 @@ export default class Xd extends React.Component{
                     </View>
                 </View>
                 <Image
-                    source={require('../images/xd.png')}
+                    source={require('../assets/images/emptyStar.png')}
                     style={{
                         height:35,
                         width:35,
@@ -60,7 +60,7 @@ export default class Xd extends React.Component{
                     width:200,
                     alignSelf:"center",
                     textAlign:"center"
-                }}>Adobe XD</Text>
+                }}>H2 Math</Text>
                 <Text style={{
                     color:"#FFF",
                     fontFamily:"Medium",
@@ -69,7 +69,7 @@ export default class Xd extends React.Component{
                     alignSelf:"center",
                     textAlign:"center"
                 }}>
-                    Essentials
+                    Paper 1
                 </Text>
 
 
@@ -91,8 +91,8 @@ export default class Xd extends React.Component{
                         marginHorizontal:30,
                         marginTop:40
                     }}>
-                        <Image
-                            source={require('../images/2.jpg')}
+                        {/*(<Image
+                            source={require('../images/a2.png')}
                             style={{
                                 height:50,
                                 width:50,
@@ -100,19 +100,19 @@ export default class Xd extends React.Component{
                                 borderColor:"#f58084",
                                 borderRadius:50,
                             }}
-                        />
+                        />*/}
                         <View style={{marginHorizontal:20}}>
                             <Text style={{
                                 color:"#345c74",
                                 fontFamily:"Bold",
                                 fontSize:18
-                            }}>Mikolaj Galezioski</Text>
+                            }}>Jonas</Text>
                             <Text style={{
                                 color:"#f58084",
                                 fontFamily:"Medium",
                                 fontSize:12
                             }}>
-                                Author, UI/UX Designer
+                                NUS Computer Engineering
                             </Text>
                         </View>
                         <View style={{
@@ -143,14 +143,14 @@ export default class Xd extends React.Component{
                             color="#f9e1fc"
                             percent={50}
                             duration="1 hours, 35 minutes"
-                            title="Design Tools"
+                            title="Algebra"
                         />
                          <Chapters
                             num={3}
                             color="#e8f1fd"
                             percent={0}
                             duration="2 hours, 20 minutes"
-                            title="Prototyping Tools"
+                            title="Functions"
                         />
                          <Chapters
                             num={4}
@@ -193,4 +193,4 @@ export default class Xd extends React.Component{
           </ImageBackground>
         )
     }
-}
+export default Xd;
