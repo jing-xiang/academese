@@ -32,6 +32,8 @@ To get started with Academese, follow these steps:
 5. Scan the QR code using the Expo app on your mobile device to run the app.
 
 ## Contribution Guidelines
+Chew Jing Xiang
+Clarisse Ng
 Academese is currently under development, and we welcome contributions from the community. If you'd like to contribute to the project, please follow these guidelines:
 - Fork the repository and create a new branch for your feature or bug fix.
 - Ensure your code adheres to our coding standards.
