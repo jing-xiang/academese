@@ -1,6 +1,6 @@
 ![academese](https://github.com/jing-xiang/academese/assets/61624545/80a8fb43-e9d1-45b7-a609-1a8663cae955)
 
-# Academese - Tuition SuperApp
+# Academese - The Tuition SuperApp
 
 Welcome to Academese - your all-in-one tuition superapp! Academese is designed to simplify the process of managing your tuition needs, scheduling sessions, and connecting with other students and tutors. Whether you're a student looking for extra help or a tutor seeking to expand your reach, Academese has you covered.
 
@@ -32,8 +32,11 @@ To get started with Academese, follow these steps:
 5. Scan the QR code using the Expo app on your mobile device to run the app.
 
 ## Contribution Guidelines
+
 Chew Jing Xiang
+
 Clarisse Ng
+
 Academese is currently under development, and we welcome contributions from the community. If you'd like to contribute to the project, please follow these guidelines:
 - Fork the repository and create a new branch for your feature or bug fix.
 - Ensure your code adheres to our coding standards.
